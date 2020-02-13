@@ -45,6 +45,13 @@ class _HomePageState extends State<HomePage> {
     size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          morseProvider.addCode('#');
+          message = '';
+        },
+        child: Text('Space'),
+      ),
       body: Column(children: [
         StreamBuilder<String>(
           stream: morseProvider.codeToCharStream,
@@ -61,7 +68,6 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         Expanded(
-          flex: 5,
           child: GestureDetector(
             onDoubleTap: () {
               if (typeTimer != null) {
@@ -86,21 +92,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        Expanded(
-          flex: 1,
-          child: GestureDetector(
-            onTap: () {
-              morseProvider.addCode('#');
-            },
-            child: Container(
-              width: size.width,
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(90),
-                  color: Colors.red.withOpacity(0.2)),
-            ),
-          ),
-        )
       ]),
     );
   }
