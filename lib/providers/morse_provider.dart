@@ -47,7 +47,8 @@ class MorseProvider with ChangeNotifier {
     "/": "-..-.",
     "@": ".--.-.",
     "(": "-.--.",
-    ")": "-.--.-"
+    ")": "-.--.-",
+    " ": " "
   };
 
   String codeToChar(String code) {
@@ -66,9 +67,23 @@ class MorseProvider with ChangeNotifier {
 
   BehaviorSubject<String> _codeToCharSubject = BehaviorSubject();
   Stream<String> get codeToCharStream => _codeToCharSubject.stream;
-
+  bool isBack = false;
   addCode(String code) {
     String message = _codeToCharSubject.value ?? '';
     _codeToCharSubject.add(message + codeToChar(code));
+  }
+
+  String textToCode(String message) {
+    String code = '';
+    print('did i even get to here');
+    for (var i = 0; i < message.length; i++) {
+      if (charToCode.containsKey(message[i])) {
+        code += charToCode[message[i]] + '  ';
+      } else {
+        code += '  ';
+      }
+    }
+    print("code: $code");
+    return code;
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:morse_rt/pages/home_page.dart';
 import 'package:morse_rt/providers/morse_provider.dart';
-import 'package:morse_rt/providers/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(App());
